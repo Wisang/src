@@ -10,10 +10,12 @@ import com.om.example.domain.Schedule;
 
 public class AddProgramsToSchedule {
 	static SimpleDateFormat dateFormat = new SimpleDateFormat("M/d/yyyy|h:mm");
-	
+
+	private boolean lastCreationSuccessful;
+
 	// for testing purpose
 	private static Schedule schedule = new Schedule();
-	
+
 	private int channel;
 	private String date;
 	private String startTime;
@@ -23,9 +25,20 @@ public class AddProgramsToSchedule {
 	private String lastId;
 
 	private static int numberCreated = 0;
-	
+
 	public static Schedule getSchedule() {
-	      return schedule;
+		return schedule;
+	}
+
+	public void execute() {
+		try {
+			Program p = schedule.addProgram(programName, episodeName, channel,
+					buildStartDateTime(), minutes);
+			lastId = p.getId();
+			lastCreationSuccessful = true;
+		} catch (ConflictingProgramException e) {
+			lastCreationSuccessful = false;
+		}
 	}
 
 	public AddProgramsToSchedule() {
@@ -57,19 +70,13 @@ public class AddProgramsToSchedule {
 	}
 
 	public String lastId() {
-		return lastId;
+		if (lastCreationSuccessful)
+			return lastId;
+		return "n/a";
 	}
 
 	public boolean created() {
-		try {
-			Program p = schedule.addProgram(programName, episodeName, channel,
-					buildStartDateTime(), minutes);
-			lastId = p.getId();
-		} catch (ConflictingProgramException e) {
-			lastId = "n/a";
-			return false;
-		}
-		return true;
+		return lastCreationSuccessful;
 	}
 
 	private Date buildStartDateTime() {

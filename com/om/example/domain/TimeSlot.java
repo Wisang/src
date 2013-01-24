@@ -15,7 +15,7 @@ public class TimeSlot {
 	}
 
 	public boolean conflictsWith(TimeSlot other) {
-		if (/*channel == other.channel && */ startDateTime.equals(other.startDateTime))
+		if (channel == other.channel && startDateTime.equals(other.startDateTime))
 			return true;
 		return false;
 	}
