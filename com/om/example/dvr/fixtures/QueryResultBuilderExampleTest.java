@@ -1,4 +1,4 @@
-package com.om.example.domain;
+package com.om.example.dvr.fixtures;
 
 import static org.junit.Assert.*;
 
@@ -9,10 +9,13 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.om.example.domain.Program;
+import com.om.example.domain.Schedule;
+import com.om.example.domain.SeasonPassManager;
 import com.om.query.QueryResultBuilder;
 import com.om.query.domain.QueryResult;
 
-public class SeasonPassManagerTest {
+public class QueryResultBuilderExampleTest {
 	private SeasonPassManager seasonPassManager;
 	private Schedule schedule;
 
@@ -37,24 +40,14 @@ public class SeasonPassManagerTest {
 	}
 
 	@Test
-	public void AssertNewSeasonPassManagerHasEmptyToDoList() {
-		assertEquals(0, seasonPassManager.sizeOfToDoList());
-	}
-
-	@Test
-	public void schduleProgramWithOneEpisodeToDoListIs1() {
+	public void queryResultBuilderCanTranslateToDoListCorrectly() {
 		seasonPassManager.createNewSeasonPass("p1", 7);
-		assertEquals(1, seasonPassManager.sizeOfToDoList());
-	}
 
-	// outdated
-//	@Test
-//	public void queryResultBuilderCanTranslateToDoListCorrectly() {
-//		seasonPassManager.createNewSeasonPass("p1", 7);
-//
-//		QueryResultBuilder builder = new QueryResultBuilder(Program.class);
-//		QueryResult result = builder
-//				.build(seasonPassManager.toDoListIterator());
-//		List<Object> renderedObjects = result.render();
-//	}
+		QueryResultBuilder builder = new QueryResultBuilder(Program.class);
+		builder.register("timeSlot", new TimeSlotPropertyHandler());
+		QueryResult result = builder
+				.build(seasonPassManager.toDoListIterator());
+		List<Object> renderedObjects = result.render();
+		assertEquals(1, renderedObjects.size());
+	}
 }

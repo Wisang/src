@@ -57,7 +57,7 @@ public class AddProgramsToSchedule {
 		this.channel = channel;
 	}
 
-	public void ssetDate(String date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 

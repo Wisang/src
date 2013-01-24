@@ -54,4 +54,8 @@ public class Schedule {
 
 		return result;
 	}
+
+	public void clear() {
+		scheduledPrograms.clear();		
+	}
 }
