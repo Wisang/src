@@ -7,6 +7,11 @@ import com.om.example.util.DateUtil;
 
 public class GeneratePrograms {
 	AddProgramsToSchedule addProgramsToSchedule = new AddProgramsToSchedule();
+	int totalEpisodesCreated;
+
+	public int TotalEpisodesCreated() {
+		return totalEpisodesCreated;
+	}
 
 	public String CreateWeeklyProgramNamedOnChannelStartingOnAtLengthEpisodes(
 			String programName, int channel, String startDate,
@@ -43,13 +48,14 @@ public class GeneratePrograms {
 			String startTime, int minutes, String nextStartDate, int i)
 			throws ParseException {
 		addProgramsToSchedule.setChannel(channel);
-	      addProgramsToSchedule.setDate(nextStartDate);
-	      addProgramsToSchedule.setEpisode(String.format("E%d", (i + 1)));
-	      addProgramsToSchedule.setName(programName);
-	      addProgramsToSchedule.setStartTime(startTime);
-	      addProgramsToSchedule.setMinutes(minutes);
-	      addProgramsToSchedule.execute();
-	      if (!addProgramsToSchedule.created())
-	         throw new ConflictingProgramException();
+		addProgramsToSchedule.setDate(nextStartDate);
+		addProgramsToSchedule.setEpisode(String.format("E%d", (i + 1)));
+		addProgramsToSchedule.setName(programName);
+		addProgramsToSchedule.setStartTime(startTime);
+		addProgramsToSchedule.setMinutes(minutes);
+		addProgramsToSchedule.execute();
+		if (!addProgramsToSchedule.created())
+			throw new ConflictingProgramException();
+		++totalEpisodesCreated;
 	}
 }
