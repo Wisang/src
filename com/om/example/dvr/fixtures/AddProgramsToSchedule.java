@@ -7,6 +7,7 @@ import java.util.Date;
 import com.om.example.domain.ConflictingProgramException;
 import com.om.example.domain.Program;
 import com.om.example.domain.Schedule;
+import com.om.example.util.DateUtil;
 
 public class AddProgramsToSchedule {
 	static SimpleDateFormat dateFormat = new SimpleDateFormat("M/d/yyyy|h:mm");
@@ -30,10 +31,10 @@ public class AddProgramsToSchedule {
 		return schedule;
 	}
 
-	public void execute() {
+	public void execute() throws ParseException {
 		try {
 			Program p = schedule.addProgram(programName, episodeName, channel,
-					buildStartDateTime(), minutes);
+					DateUtil.instance().buildDate(date, startTime), minutes);
 			lastId = p.getId();
 			lastCreationSuccessful = true;
 		} catch (ConflictingProgramException e) {
@@ -79,12 +80,13 @@ public class AddProgramsToSchedule {
 		return lastCreationSuccessful;
 	}
 
-	private Date buildStartDateTime() {
-		try {
-			String dateTime = String.format("%s|%s", date, startTime);
-			return dateFormat.parse(dateTime);
-		} catch (ParseException e) {
-			throw new RuntimeException("Unable to parse date/time", e);
-		}
-	}
+	// no longer necessary
+//	private Date buildStartDateTime() {
+//		try {
+//			String dateTime = String.format("%s|%s", date, startTime);
+//			return dateFormat.parse(dateTime);
+//		} catch (ParseException e) {
+//			throw new RuntimeException("Unable to parse date/time", e);
+//		}
+//	}
 }
