@@ -47,7 +47,7 @@ public class DateUtil {
 
 	public Date buildDate(String date, String startTime) throws ParseException {
 		String dateTime = String.format("%s|%s", date, startTime);
-		return dateFormat.parse(dateTime);
+	      return dateTimeMergedFormat.parse(dateTime);
 	}
 
 	public boolean isSameDate(Date startDateTime, Date date) {

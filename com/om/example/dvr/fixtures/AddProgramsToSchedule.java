@@ -81,12 +81,12 @@ public class AddProgramsToSchedule {
 	}
 
 	// no longer necessary
-//	private Date buildStartDateTime() {
-//		try {
-//			String dateTime = String.format("%s|%s", date, startTime);
-//			return dateFormat.parse(dateTime);
-//		} catch (ParseException e) {
-//			throw new RuntimeException("Unable to parse date/time", e);
-//		}
-//	}
+	// private Date buildStartDateTime() {
+	// try {
+	// String dateTime = String.format("%s|%s", date, startTime);
+	// return dateFormat.parse(dateTime);
+	// } catch (ParseException e) {
+	// throw new RuntimeException("Unable to parse date/time", e);
+	// }
+	// }
 }
