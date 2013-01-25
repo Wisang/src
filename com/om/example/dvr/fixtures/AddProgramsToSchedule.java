@@ -2,7 +2,6 @@ package com.om.example.dvr.fixtures;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import com.om.example.domain.ConflictingProgramException;
 import com.om.example.domain.Program;

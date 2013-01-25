@@ -4,13 +4,9 @@ import static org.junit.Assert.*;
 
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import com.om.query.QueryResultBuilder;
-import com.om.query.domain.QueryResult;
 
 public class SeasonPassManagerTest {
 	private SeasonPassManager seasonPassManager;

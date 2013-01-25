@@ -1,6 +1,5 @@
 package com.om.example.dvr.fixtures;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.om.example.domain.TimeSlot;
